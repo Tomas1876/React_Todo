@@ -10,6 +10,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
   }
+  a {
+    text-decoration: none;
+  }
+  .first-button {
+    margin-right: 25px;
+  }
+  .last-button {
+    margin-left: 25px;
+  }
 `;
 
 export default GlobalStyle;

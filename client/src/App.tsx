@@ -1,12 +1,20 @@
-import React from 'react';
-import MainPage from './pages/main';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
 import GlobalStyle from './style/globalStyles';
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <MainPage />
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/auth/login" element={<LoginPage />} />
+        <Route path="/auth/signup" element={<SignUpPage />} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }

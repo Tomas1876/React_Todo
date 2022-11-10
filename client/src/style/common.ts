@@ -11,16 +11,19 @@ const color = {
 const button = {
         primary: {
             background: color.primary,
-            color: color.light
+            color: color.light,
+            a : { color: color.light}
         },
         secondary: {
             background: color.light,
             color: color.primary,
+            a: { color: color.primary },
             border: `2px solid ${color.primary}`
         },
         disabled: {
             background: color.light,
             color: color.secondary,
+            a: { color: color.secondary },
             border: `2px solid ${color.secondary}`
         }
 
@@ -36,21 +39,20 @@ export const Main = styled.main`
 `;
 
 export const Input = styled.input`
-    width: 500px;
-    height: 150px;
+    width: 300px;
+    height: 120px;
     border-radius: 5px;
     outline: none;
 `;
 
 export const Button = styled.button`
-    width: 500px;
-    height: 150px;
+    width: 300px;
+    height: 120px;
     border: none;
     border-radius: 5px;
     font-size: 32px;    
     ${props => props.theme === 'primary' ? button.primary : (props.theme === 'secondary'? button.secondary : button.disabled)}
     :hover {
-        width: 510px;
-        height: 160px;
+        filter: brightness(0.90)
     }
 `;
