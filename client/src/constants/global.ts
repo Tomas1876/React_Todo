@@ -3,17 +3,17 @@ export const DEFAULT_URL = 'http://localhost:8080';
 export const ROUTES = {
     login: {
         value: 'Login',
-        url: '/auth/login',
+        url: '/login',
         name: '로그인'
     },
     logout: {
         value: 'Logout',
-        url: '/auth/logout',
+        url: '/logout',
         name: '로그아웃'
     },
     signUp: {
         value: 'SingUp',
-        url: '/auth/singup',
+        url: '/singup',
         name: '회원가입'
     },
     todos: {
