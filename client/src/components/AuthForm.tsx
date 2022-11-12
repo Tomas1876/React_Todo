@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { DEFAULT_URL, ROUTES, ERROR_MESSAGE } from '../constants/global';
 import { Main } from '../style/common';
 import CustomButton from './common/CustomButton';
@@ -10,6 +12,8 @@ import CustomParagraph from './common/CustomParagraph';
 /* fix : 왜 파라미터를 (authType : string) 이라고 하면 타입에러가 발생하는지 확인해볼 것*/
 const AuthForm = ( {authType} : {authType : string} ) => {
 
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailMessage, setEmailMessage] = useState('');
@@ -19,11 +23,11 @@ const AuthForm = ( {authType} : {authType : string} ) => {
 
     /* fix : 편법으로 if문 사용했는데 typescript의 string literal에 대해 더 공부하고 추구 타입 정정할 것*/
     let authRoute = ROUTES['login'];
-    let urlSuffix = authRoute.url;
+    let url = `${DEFAULT_URL}/users${authRoute.url}`;
 
     if(authType === 'signUp'){
         authRoute = ROUTES['signUp'];
-        urlSuffix = '/create';
+        url = `${DEFAULT_URL}/users/create`;
     }
 
     const validateEmail = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +47,22 @@ const AuthForm = ( {authType} : {authType : string} ) => {
     const confirmPassword = (e : React.ChangeEvent<HTMLInputElement>) => {
         const passwordValue = e.target.value;
         setPassword(passwordValue);
+    }
+
+    const submitSingUp = (e : React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        axios.post(url, {
+            email, password
+        }).then((response)=>{
+            console.log(response)
+            if(response.statusText === 'OK'){
+                if(window.confirm('회원가입에 성공했습니다.')){                    
+                    navigate('/auth/login');
+                }
+            } else {
+                window.confirm('회원가입에 실패했습니다.')
+            }
+        });
     }
 
     /* fix : 이렇게 useEffect 여러 개 써도 되나? */
@@ -89,10 +109,11 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                                     'submit', 
                                     authRoute.name, 
                                     isDisabled, 
-                                    isDisabled? 'disabled' : 'primary');
+                                    isDisabled? 'disabled' : 'primary',
+                                    authType === 'login' ? () => {} : submitSingUp);
     return (
         <Main>
-            <form action={`${DEFAULT_URL}/users${urlSuffix}`}>
+            <form action={url}>
                 {EmailInput()}
                 {EmailMessage()}
                 {PasswordInput()}

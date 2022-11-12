@@ -1,4 +1,19 @@
 {
   "todos": [],
-  "users": []
+  "users": [
+    {
+      "email": "1111@naver.com",
+      "password": "12345678",
+      "id": "teH1BKDkS4AVJBxtPwtrH",
+      "createdAt": "2022-11-12T18:51:08.762Z",
+      "updatedAt": "2022-11-12T18:51:08.762Z"
+    },
+    {
+      "email": "1112@naver.com",
+      "password": "12345678",
+      "id": "cfzRKzCgLq99cXofIsJOE",
+      "createdAt": "2022-11-12T18:59:53.539Z",
+      "updatedAt": "2022-11-12T18:59:53.539Z"
+    }
+  ]
 }
