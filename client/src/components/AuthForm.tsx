@@ -55,12 +55,37 @@ const AuthForm = ( {authType} : {authType : string} ) => {
             email, password
         }).then((response)=>{
             console.log(response)
-            if(response.statusText === 'OK'){
+            if(response.status === 200) {
                 if(window.confirm('회원가입에 성공했습니다.')){                    
                     navigate('/auth/login');
                 }
+            }
+        }).catch((reject)=>{
+            if(reject.response.status === 409) {
+                window.confirm('중복된 이메일입니다.') // https://mangoday.tistory.com/137
             } else {
                 window.confirm('회원가입에 실패했습니다.')
+            }
+        });
+    }
+
+    const submitLogin = (e : React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        axios.post(url, {
+            email, password
+        }).then((response)=>{
+            console.log(response)
+            if(response.status === 200){
+                if(window.confirm('로그인에 성공했습니다.')){                    
+                    navigate('/');
+                }
+            }
+        }).catch((reject)=>{
+            console.log(reject);
+            if(reject.response.status === 400) {
+                window.confirm('로그인 정보가 올바르지 않습니다.')
+            } else {
+                window.confirm('로그인에 실패했습니다.')
             }
         });
     }
@@ -110,7 +135,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                                     authRoute.name, 
                                     isDisabled, 
                                     isDisabled? 'disabled' : 'primary',
-                                    authType === 'login' ? () => {} : submitSingUp);
+                                    authType === 'login' ? submitLogin : submitSingUp);
     return (
         <Main>
             <form action={url}>
