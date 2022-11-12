@@ -18,7 +18,7 @@ export const ROUTES = {
     },
     todos: {
         value: 'Todos',
-        url: '/todo',
+        url: '/todos',
         name: '할일'
     }
 }
