@@ -1,8 +1,8 @@
+import AuthForm from "../../components/AuthForm";
+
 const LoginPage = () => {
     return(
-        <p>
-            로그인 페이지
-        </p>
+        <AuthForm authType='login' />
     );
 }
 export default LoginPage;
