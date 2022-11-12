@@ -24,7 +24,7 @@ export const ROUTES = {
 }
 
 export const ERROR_MESSAGE = {
-    INVALID_EAMIL: '이메일은 @와 .를 포함해야 합니다.',
+    INVALID_EMAIL: '이메일은 @와 .를 포함해야 합니다.',
     INVALID_PASSWORD_SHORT: '비밀번호는 8자리 이상이어야 합니다.',
     INVALID_PASSWORD_CONFIRM: '비밀번호가 맞지 않습니다.',
     INVALID_VALUE: '올바른 값을 입력해주세요.',

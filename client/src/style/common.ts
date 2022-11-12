@@ -5,6 +5,7 @@ const color = {
         primary: '#007FFF',
         secondary: '#6c757d',
         danger: '#dc3545',
+        success: '#00FF00',
         dark: '#23272b',
         light: '#f8f9fa'
 }
@@ -55,4 +56,12 @@ export const Button = styled.button`
     :hover {
         filter: brightness(0.90)
     }
+`;
+
+export const Paragraph = styled.p`
+    width: 100%;
+    height: 20px;
+    font-size: 16px;
+    text-align: center;
+    color: ${props => props.theme === 'dark' ? color.dark : (props.theme === 'success'? color.success : color.danger)}
 `;

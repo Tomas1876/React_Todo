@@ -7,7 +7,6 @@ const CustomButton = (
         theme : string = 'primary',
         onClick : React.FormEventHandler = (e)=> { console.log(e) }
     ) => {
-        console.log(disabled);
         return (
             <Button type={type}
                     aria-label={label}

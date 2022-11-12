@@ -10,6 +10,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
   }
+  form {
+    text-align: center;
+  }
+  input, button {
+    display: block;
+  }
   a {
     text-decoration: none;
   }
