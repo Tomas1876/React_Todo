@@ -12,8 +12,8 @@ export const ROUTES = {
         name: '로그아웃'
     },
     signUp: {
-        value: 'SingUp',
-        url: '/singup',
+        value: 'SignUp',
+        url: '/signup',
         name: '회원가입'
     },
     todos: {

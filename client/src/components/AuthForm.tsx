@@ -19,9 +19,11 @@ const AuthForm = ( {authType} : {authType : string} ) => {
 
     /* fix : 편법으로 if문 사용했는데 typescript의 string literal에 대해 더 공부하고 추구 타입 정정할 것*/
     let authRoute = ROUTES['login'];
+    let urlSuffix = authRoute.url;
 
     if(authType === 'signUp'){
         authRoute = ROUTES['signUp'];
+        urlSuffix = '/create';
     }
 
     const validateEmail = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -75,11 +77,6 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                                     100, 
                                     password, 
                                     authType === 'login' ? confirmPassword : validatePassword);
-    const SubmitButton = () => CustomButton(
-                                    'submit', 
-                                    authRoute.name, 
-                                    isDisabled, 
-                                    isDisabled? 'disabled' : 'primary');
 
     const EmailMessage = () => CustomParagraph(
                                     emailMessage,
@@ -87,9 +84,15 @@ const AuthForm = ( {authType} : {authType : string} ) => {
     const PasswordMessage = () => CustomParagraph(
                                     passwordMessage,
                                     password.length >= 8 ? 'success' : 'danger');
+    
+    const SubmitButton = () => CustomButton(
+                                    'submit', 
+                                    authRoute.name, 
+                                    isDisabled, 
+                                    isDisabled? 'disabled' : 'primary');
     return (
         <Main>
-            <form action={`${DEFAULT_URL}/users${authRoute.url}`}>
+            <form action={`${DEFAULT_URL}/users${urlSuffix}`}>
                 {EmailInput()}
                 {EmailMessage()}
                 {PasswordInput()}
