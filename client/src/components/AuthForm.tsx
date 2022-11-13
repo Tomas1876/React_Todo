@@ -23,11 +23,11 @@ const AuthForm = ( {authType} : {authType : string} ) => {
 
     /* fix : 편법으로 if문 사용했는데 typescript의 string literal에 대해 더 공부하고 추구 타입 정정할 것*/
     let authRoute = ROUTES['login'];
-    let url = `${DEFAULT_URL}/users${authRoute.url}`;
+    let url = `users${authRoute.url}`;
 
     if(authType === 'signUp'){
         authRoute = ROUTES['signUp'];
-        url = `${DEFAULT_URL}/users/create`;
+        url = `users/create`;
     }
 
     const validateEmail = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +78,27 @@ const AuthForm = ( {authType} : {authType : string} ) => {
             }
             return;
         }
+        /*
+        sendData(url,
+                {email, password},
+                (response)=>{
+                    console.log(response)
+                    if(response.status === 200){
+                        if(window.confirm('로그인에 성공했습니다.')) {
+                            localStorage.setItem('userToken', `Barear ${response.data.token}`);                    
+                            navigate('/');
+                        }
+                    }
+                },
+                (reject)=>{
+                    console.log(reject);
+                    if(reject.response.status === 400) {
+                        window.confirm('로그인 정보가 올바르지 않습니다.')
+                    } else {
+                        window.confirm('로그인에 실패했습니다.')
+                    }
+                });
+        */
 
         axios.post(url, {
             email, password
@@ -97,6 +118,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                 window.confirm('로그인에 실패했습니다.')
             }
         });
+
     }
 
     /* fix : 이렇게 useEffect 여러 개 써도 되나? */
