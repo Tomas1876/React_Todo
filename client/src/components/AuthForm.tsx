@@ -71,12 +71,21 @@ const AuthForm = ( {authType} : {authType : string} ) => {
 
     const submitLogin = (e : React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
+
+        if(localStorage.getItem('userToken')) {
+            if(window.confirm('이미 로그인 되어 있습니다')) {
+                navigate('/');
+            }
+            return;
+        }
+
         axios.post(url, {
             email, password
         }).then((response)=>{
             console.log(response)
             if(response.status === 200){
-                if(window.confirm('로그인에 성공했습니다.')){                    
+                if(window.confirm('로그인에 성공했습니다.')) {
+                    localStorage.setItem('userToken', `Barear ${response.data.token}`);                    
                     navigate('/');
                 }
             }

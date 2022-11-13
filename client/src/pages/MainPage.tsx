@@ -8,6 +8,7 @@ const MainBox = styled(Main)`
     justify-content: space-between;
 `;
 const MainPage = () => {
+
     return(
         <MainBox>
             <Link to={`auth${ROUTES.signUp.url}`} className='first-button'><Button theme={'secondary'}>{ROUTES.signUp.name}</Button></Link>
