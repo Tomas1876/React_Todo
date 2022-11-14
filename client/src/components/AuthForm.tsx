@@ -23,7 +23,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
 
     /* fix : 편법으로 if문 사용했는데 typescript의 string literal에 대해 더 공부하고 추구 타입 정정할 것*/
     let authRoute = ROUTES['login'];
-    let url = `users${authRoute.url}`;
+    let url = `users/login`;
 
     if(authType === 'signUp'){
         authRoute = ROUTES['signUp'];
@@ -51,7 +51,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
 
     const submitSingUp = (e : React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        axios.post(url, {
+        axios.post(`${DEFAULT_URL}/${url}`, {
             email, password
         }).then((response)=>{
             console.log(response)
@@ -100,7 +100,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                 });
         */
 
-        axios.post(url, {
+        axios.post(`${DEFAULT_URL}/${url}`, {
             email, password
         }).then((response)=>{
             console.log(response)
