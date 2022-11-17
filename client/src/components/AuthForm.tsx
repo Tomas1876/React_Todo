@@ -7,9 +7,9 @@ import CustomButton from './common/CustomButton';
 import CustomInput from './common/CustomInput';
 import CustomParagraph from './common/CustomParagraph';
 
-/* fix : 이 컴포넌트가 너무 많은 일을 하고 있지는 않은지? 리스너의 경우 알맞은 페이지로 분리하는 걸 고려할 것*/
+/* FIXME  이 컴포넌트가 너무 많은 일을 하고 있지는 않은지? 리스너의 경우 알맞은 페이지로 분리하는 걸 고려할 것*/
 
-/* fix : 왜 파라미터를 (authType : string) 이라고 하면 타입에러가 발생하는지 확인해볼 것*/
+/* FIXME 왜 파라미터를 (authType : string) 이라고 하면 타입에러가 발생하는지 확인해볼 것*/
 const AuthForm = ( {authType} : {authType : string} ) => {
 
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
     const [isEmailValidated, setEmailValidate] = useState(false);
     const [isDisabled, setDisability] = useState(true);
 
-    /* fix : 편법으로 if문 사용했는데 typescript의 string literal에 대해 더 공부하고 추구 타입 정정할 것*/
+    /* FIXME 편법으로 if문 사용했는데 typescript의 string literal에 대해 더 공부하고 추구 타입 정정할 것*/
     let authRoute = ROUTES['login'];
     let url = `users/login`;
 
@@ -121,7 +121,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
 
     }
 
-    /* fix : 이렇게 useEffect 여러 개 써도 되나? */
+    /* FIXME 이렇게 useEffect 여러 개 써도 되나? */
     useEffect(()=>{
         setDisability(!isEmailValidated || password.length < 8);
     }, [isEmailValidated, password]);

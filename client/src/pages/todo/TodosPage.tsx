@@ -5,26 +5,8 @@ import { DEFAULT_URL } from '../../constants/global';
 import { Main } from '../../style/common';
 import CustomInput from '../../components/common/CustomInput';
 import CustomButton from '../../components/common/CustomButton';
+import TodoList from '../../components/todo/todoList';
 // import Todo from '../../components';
-
-const Todo = ({title, content, created}:{title: any, content: any, created: any}) => {
-    return(
-        <li>
-            <h3>{title}</h3>
-            <p>{content}</p>
-            <p>작성일시 : {created}</p>
-            <button>수정</button>
-            <button>삭제</button>
-        </li>
-    );
-}
-
-interface todoType {
-    id: any;
-    title: any;
-    content: any;
-    createdAt: any;
-}
 
 const TodosPage = () => {
     
@@ -117,16 +99,7 @@ const TodosPage = () => {
                 {TodoContent()}
                 {CreateTodoButton()}
             </form>
-            {todos.length === 0 ? <ul></ul> : 
-                                <ul>
-                                    {todos.map(
-                                        (todo)=> <Todo key={todo['id']}
-                                                       title={todo['title']}
-                                                       content={todo['content']}
-                                                       created={todo['createdAt']}/>
-                                        )
-                                    }
-                                </ul>}
+            <TodoList list={todos} />
         </Main>
     );
 }
