@@ -6,6 +6,7 @@ import { Main } from '../../style/common';
 import CustomInput from '../../components/common/CustomInput';
 import CustomButton from '../../components/common/CustomButton';
 import TodoList from '../../components/todo/todoList';
+import { Todo } from '../../constants/types';
 // import Todo from '../../components';
 
 const TodosPage = () => {
@@ -18,7 +19,7 @@ const TodosPage = () => {
         }
     }
 
-    const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState(Array<Todo>);
     const [todoTitle, setTodoTitle] = useState('');
     const [todoContent, setTodoContent] = useState('');
     const [canCreateTodo, setCanCreateTodo] = useState(false);
