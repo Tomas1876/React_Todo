@@ -1,11 +1,8 @@
-import {
-  useQuery,
-  useMutation,
-  QueryClient,
-} from '@tanstack/react-query'
+import { useQuery, useMutation, QueryClient } from '@tanstack/react-query'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useTodos, useTodo } from '../../queries/todos';
+import { createTodo } from '../../apis';
 import { DEFAULT_URL } from '../../constants/global';
 import { Main } from '../../style/common';
 import CustomInput from '../../components/common/CustomInput';
@@ -27,6 +24,8 @@ const TodosPage = () => {
     const [todoContent, setTodoContent] = useState('');
     const [canCreateTodo, setCanCreateTodo] = useState(false);
 
+    const { data } = useTodos();
+    console.log(data);
     if(!localStorage.getItem('userToken')) {
         if(window.confirm('로그인 정보가 만료되었습니다.')) {
             navigate('/auth/login');
@@ -53,30 +52,10 @@ const TodosPage = () => {
                         todoContent,
                         (e: React.ChangeEvent<HTMLInputElement>) => setTodoContent(e.target.value)
                     );
-    const getTodos = async (): Promise<TodoType[]> => { 
-                const data = await axios.get(`${DEFAULT_URL}/todos`,
-                    {headers: {
-                            Authorization: localStorage.getItem('userToken') || ''
-                        }
-                    });
-                setTodos(data.data.data);
-                return data.data.data};
-    const createTodo = async () : Promise<TodoType> => {    
-                const data = await axios.post(`${DEFAULT_URL}/todos`,
-                    {
-                        title: todoTitle,
-                        content: todoContent
-                    },
-                    {headers: {
-                            Authorization: localStorage.getItem('userToken') || ''
-                        }
-                    });
-                return data.data.data;
-            };
 
     const onClickCreateTodoButton = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        mutation.mutate();
+        addTodomutation.mutate({title: todoTitle, content: todoContent});
     }
     
     const CreateTodoButton = () => CustomButton(
@@ -89,19 +68,17 @@ const TodosPage = () => {
     useEffect(()=>{
         setCanCreateTodo(todoTitle !== '' && todoContent !== '')
     }, [todoTitle, todoContent]);
-    
-    /* TODO 상태관리를 하게 되면  react-query 관련 코드는 분리할 것 */
-    const { data } = useQuery({ queryKey: ['todos'], queryFn: getTodos })
-   
-    const mutation = useMutation({
+    const addTodomutation = useMutation({
     mutationFn: createTodo,
     onSuccess: (response) => {
         // Invalidate and refetch
         /* FIXME 왜 안 되지??? refetch가 제대로 안 되는 것 같다 */
-        //queryClient.invalidateQueries({ queryKey: ['todos'] });
-        getTodos();        
+        queryClient.invalidateQueries({ queryKey: ['todos'] });
+        setTodoTitle('');
+        setTodoContent('');        
     },
   })
+  
     /*
     // Mutations
     const mutation = useMutation({
@@ -121,7 +98,7 @@ const TodosPage = () => {
                 {CreateTodoButton()}
             </form>
             <article>
-                {todos? todos.map((todo : TodoType)=> <TodoListItem key={todo.id} todo={todo} />) : ''}
+                {data? data.data.map((todo : TodoType)=> <TodoListItem key={todo.id} todo={todo} />) : ''}
             </article>
             <article>
                 
