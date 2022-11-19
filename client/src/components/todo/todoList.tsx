@@ -1,22 +1,13 @@
-import { Todo } from "../../constants/types";
 
-const TodoListItem = ({title, content, created}:{title: any, content: any, created: any}) => {
+import { TodoType } from "../../constants/types";
+
+const TodoListItem = ({ todo } : { todo: TodoType }) => {
     return(
         <li>
-            <h3>{title}</h3>
-            <p>작성일시 : {created}</p>
+            <h3>{todo.title}</h3>
+            <p>작성일시 : {todo.createdAt}</p>
         </li>
     );
 }
 
-const TodoList = ({ list } : { list : Array<Todo>}) => {
-    return (
-        <ul>
-            {list.map((item)=> <TodoListItem title={item.title}
-                                             content={item.content}
-                                             created={item.created}/>)}
-        </ul>
-    );
-}
-
-export default TodoList;
+export default TodoListItem;

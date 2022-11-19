@@ -33,10 +33,8 @@ const AuthForm = ( {authType} : {authType : string} ) => {
     const validateEmail = (e : React.ChangeEvent<HTMLInputElement>) => {
         const emailValue = e.target.value;
         setEmail(emailValue);
-        console.log(emailValue);
         const emailReg = /^[{a-z}|{0-9}]+@+[{a-z}|{0-9}]+\.+[{a-z}]+/;
         setEmailValidate(emailReg.test(String(emailValue).toLowerCase()));
-        console.log('isEmailValidated ' + isEmailValidated);
     }
 
     const validatePassword = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +52,6 @@ const AuthForm = ( {authType} : {authType : string} ) => {
         axios.post(`${DEFAULT_URL}/${url}`, {
             email, password
         }).then((response)=>{
-            console.log(response)
             if(response.status === 200) {
                 if(window.confirm('회원가입에 성공했습니다.')){                    
                     navigate('/auth/login');
@@ -103,7 +100,6 @@ const AuthForm = ( {authType} : {authType : string} ) => {
         axios.post(`${DEFAULT_URL}/${url}`, {
             email, password
         }).then((response)=>{
-            console.log(response)
             if(response.status === 200){
                 if(window.confirm('로그인에 성공했습니다.')) {
                     localStorage.setItem('userToken', `Barear ${response.data.token}`);                    
@@ -111,7 +107,6 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                 }
             }
         }).catch((reject)=>{
-            console.log(reject);
             if(reject.response.status === 400) {
                 window.confirm('로그인 정보가 올바르지 않습니다.')
             } else {
