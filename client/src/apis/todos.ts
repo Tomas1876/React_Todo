@@ -25,7 +25,6 @@ export const getTodos = async () => {
 export const getTodo = async (id: string) => {
     try {
         const { data } = await todoApi.get(id);
-        console.log(data);
         return data;
     } catch(error) {
         if (error instanceof AxiosError) {
