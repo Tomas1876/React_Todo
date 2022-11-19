@@ -19,7 +19,7 @@ const Todo = () => {
         if(!data) {
             return;
         }
-        setSelectedTodo(data);
+        setSelectedTodo(data.data);
     }, [data]);
 
     return(

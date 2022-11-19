@@ -11,8 +11,8 @@ const MainPage = () => {
 
     return(
         <MainBox>
-            <Link to={`auth${ROUTES.signUp.url}`} className='first-button'><Button theme={'secondary'}>{ROUTES.signUp.name}</Button></Link>
-            <Link to={`auth${ROUTES.login.url}`}><Button theme={'primary'}>{ROUTES.login.name}</Button></Link>
+            <Link to={ROUTES.signUp.url} className='first-button'><Button theme={'secondary'}>{ROUTES.signUp.name}</Button></Link>
+            <Link to={ROUTES.login.url}><Button theme={'primary'}>{ROUTES.login.name}</Button></Link>
             <Link to={ROUTES.todos.url} className='last-button'><Button theme={'secondary'}>{ROUTES.todos.name}</Button></Link>
         </MainBox>        
     )
