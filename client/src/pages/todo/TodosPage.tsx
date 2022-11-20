@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { useTodos, useTodo } from '../../queries/todos';
 import { Main } from '../../style/common';
 import Todo from '../../components/todo/Todo';
 import TodoList from '../../components/todo/TodoList';
@@ -8,8 +7,7 @@ import TodoList from '../../components/todo/TodoList';
 const TodosPage = () => {
     
     const navigate = useNavigate();
-    const { data } = useTodos();
-    console.log(data);
+
     if(!localStorage.getItem('userToken')) {
         if(window.confirm('로그인 정보가 만료되었습니다.')) {
             navigate('/auth/login');

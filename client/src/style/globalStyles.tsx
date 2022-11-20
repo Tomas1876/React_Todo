@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
   input, button {
     display: block;
   }
+  input:read-only {
+    outline: none;
+    border: none;
+  }
   a {
     text-decoration: none;
   }

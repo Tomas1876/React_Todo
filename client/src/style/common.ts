@@ -1,3 +1,4 @@
+import { CustomSize } from './../constants/types';
 import styled from 'styled-components';
 
 /* 공통 스타일 */
@@ -39,19 +40,19 @@ export const Main = styled.main`
     justify-content: center;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<CustomSize>`
     width: 300px;
     height: 120px;
     border-radius: 5px;
     outline: none;
 `;
 
-export const Button = styled.button`
-    width: 300px;
-    height: 120px;
+export const Button = styled.button<CustomSize>`
+    width: ${props => props.width ? props.width : '300px'};
+    height: ${props => props.height ? props.height : '120px'};
     border: none;
     border-radius: 5px;
-    font-size: 32px;    
+    font-size: ${props => props['font-size'] ? props['font-size'] : '32px'}; 
     ${props => props.theme === 'primary' ? button.primary : (props.theme === 'secondary'? button.secondary : button.disabled)}
     :hover {
         filter: brightness(0.90)

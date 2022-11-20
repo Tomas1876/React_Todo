@@ -9,9 +9,15 @@ export type TodoType = {
     updatedAt: string
 }
 
+export type CustomSize = {
+                width?: string,
+                height?: string,
+                'font-size'?: string
+}
+
 export type CustomInputProps = {
                     label: string
-                } & InputHTMLAttributes<HTMLElement>;
+                } & CustomSize & InputHTMLAttributes<HTMLElement>;
 export type CustomButtonProps = {
                     theme: string
-                } & ButtonHTMLAttributes<HTMLElement>; 
+                } & CustomSize & ButtonHTMLAttributes<HTMLElement>; 
