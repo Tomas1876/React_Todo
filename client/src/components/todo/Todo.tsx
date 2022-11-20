@@ -43,12 +43,27 @@ const Todo = () => {
     const onClickUpdate = (e : React.MouseEvent<HTMLElement>) => {
         if(!isEditing) {
             setIsEditing(true);
+        } else if(!canUpdate) {
+            let message = ''
+            if(todoContents.title.trim() === '') {
+                message = '할일 제목을 1자 이상 입력해주세요.';
+            } else if(todoContents.content.trim() === '') {
+                message = '할일 제목을 1자 이상 입력해주세요.';
+            } else {
+                message = '할일을 수정할 수 없습니다. 다시 시도해주세요.'
+            }
+            alert(message);
         }
     }
 
     const onSubmitUpdate = (e : React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        updateTodo(selectedTodo.id, todoContents);
+
+        if(window.confirm('수정하시겠습니까?')) {
+            updateTodo(selectedTodo.id, todoContents);
+        } else {
+            return;
+        }
         setIsEditing(false);
         setCanUpdate(false);
     }
