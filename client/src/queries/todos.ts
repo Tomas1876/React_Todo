@@ -8,10 +8,10 @@ export const useTodos = () => {
   });
 }
 
-export const useTodo = (todoId: string) => {
+export const useTodo = (todoId: string | null) => {
   return useQuery({
     queryKey: ['todo', todoId],
-    queryFn: () => getTodo(todoId)
+    queryFn: () => todoId ? getTodo(todoId) : null
   });
 };
 

@@ -6,12 +6,10 @@ import CustomButton from '../common/CustomButton';
 import { deleteTodo, updateTodo } from '../../apis';
 import CustomInput from '../common/CustomInput';
 
-const Todo = () => {
+const TodoItem = ({todo} : {todo: TodoType}) => {
 
     const navigate = useNavigate();
 
-    const params = useParams();
-    const { data } = useTodo(params.todoId || '');
     const [isEditing, setIsEditing] = useState(false);
     const [canUpdate, setCanUpdate] = useState(false);
     const [todoContents, setTodoContents] = useState({
@@ -19,27 +17,6 @@ const Todo = () => {
         content: ''
     })
     
-    const [selectedTodo, setSelectedTodo] = useState<TodoType>({
-        id: '',
-        title: '',
-        content: '',
-        createdAt: '',
-        updatedAt: ''
-    });
-
-    useEffect(() => {
-        if(!data) {
-            return;
-        }
-        const todo = data.data; 
-        setSelectedTodo(todo);
-        setTodoContents({
-            title: todo.title,
-            content: todo.content
-        })
-    }, [data]);
-
-    /* FIXME 한 가지 함수가 너무 많은 일을 하고 있지 않나?!*/
     const onClickUpdate = (e : React.MouseEvent<HTMLElement>) => {
         if(!isEditing) {
             setIsEditing(true);
@@ -60,7 +37,7 @@ const Todo = () => {
         e.preventDefault();
 
         if(window.confirm('수정하시겠습니까?')) {
-            updateTodo(selectedTodo.id, todoContents);
+            updateTodo(todo.id, todoContents);
         } else {
             return;
         }
@@ -70,7 +47,7 @@ const Todo = () => {
 
     const onSubmitDelete = (e : React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        deleteTodo(selectedTodo.id);
+        deleteTodo(todo.id);
         navigate(-1);
     }
 
@@ -80,15 +57,16 @@ const Todo = () => {
             const isEmptyContent = todoContents.content.trim() === '';
 
             if(!isEmptyTitle && !isEmptyContent) {
-                const didUpdateTitle = todoContents.title !== selectedTodo.title
-                const didUpdateContent =  todoContents.content !== selectedTodo.content
+                const didUpdateTitle = todoContents.title !== todo.title
+                const didUpdateContent =  todoContents.content !== todo.content
                 setCanUpdate(didUpdateTitle || didUpdateContent);
             }
         }
-    }, [isEditing, canUpdate, todoContents, selectedTodo])
+    }, [isEditing, canUpdate, todoContents, todo])
 
-    return(
-        <li>
+
+    return (
+            <>
             <CustomInput label='할일 제목'
                          name='title'
                          placeholder='제목을 입력하세요'
@@ -112,9 +90,9 @@ const Todo = () => {
                                                 setTodoContents({
                                                     title: todoContents.title,
                                                     content: e.target.value})}/>
-            <p>작성일시 : {selectedTodo.createdAt}</p>
-            {selectedTodo.createdAt !== selectedTodo.updatedAt ? 
-                                        <p>수정일시 : {selectedTodo.updatedAt}</p> : ''}
+            <p>작성일시 : {todo.createdAt}</p>
+            {todo.createdAt !== todo.updatedAt ? 
+                                        <p>수정일시 : {todo.updatedAt}</p> : ''}
             <CustomButton type='submit'
                           aria-label='수정'
                           width='50px'
@@ -129,7 +107,36 @@ const Todo = () => {
                           font-size='16px'
                           theme='primary'
                           onClick={onSubmitDelete} />
-        </li>
+        </>
+    );
+}
+
+
+const Todo = () => {
+
+    const params = useParams();
+    const { data } = useTodo(params.todoId || null);
+
+    const [selectedTodo, setSelectedTodo] = useState<TodoType>({
+        id: '',
+        title: '',
+        content: '',
+        createdAt: '',
+        updatedAt: ''
+    });
+
+    useEffect(() => {
+        if(!data) {
+            return;
+        }
+        const todo = data.data; 
+        setSelectedTodo(todo);
+    }, [data]);
+ 
+    return(
+        <>
+            {data ? <TodoItem todo={selectedTodo} /> : <p>등록된 할 일이 없습니다</p>}
+        </>
     );
 }
 export default Todo;

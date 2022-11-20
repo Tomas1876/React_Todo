@@ -3,12 +3,15 @@ import { useMutation } from '@tanstack/react-query';
 import CustomInput from '../common/CustomInput';
 import CustomButton from '../common/CustomButton';
 import { createTodo } from '../../apis';
+import { useNavigate } from 'react-router';
 
-const TodoForm = (onSubmit : Function) => {
+const TodoForm = () => {
 
     const [todoTitle, setTodoTitle] = useState('');
     const [todoContent, setTodoContent] = useState('');
     const [isDisabled, setDisabled] = useState(false);
+
+    const navigate = useNavigate();
     
     useEffect(()=>{
         setDisabled(todoTitle !== '' && todoContent !== '')
@@ -22,8 +25,7 @@ const TodoForm = (onSubmit : Function) => {
     const addTodomutation = useMutation({
         mutationFn: createTodo,
         onSuccess: () => {
-            setTodoTitle('');
-            setTodoContent('');        
+            navigate('/todos');        
         },
     });
 

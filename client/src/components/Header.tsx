@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { ROUTES } from "../constants/global";
+import { useCertify } from '../hooks/auth';
 import { headerHeight } from "../style/common";
 
 const CustomHeader = styled.header`

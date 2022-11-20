@@ -87,7 +87,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                                     password.length >= 8 ? 'success' : 'danger');
     
     return (
-        <Main>
+        <Main display='flex'>
             <form action={url}>
                 <CustomInput type='email'
                              label='이메일 입력'

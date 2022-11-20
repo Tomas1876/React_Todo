@@ -10,7 +10,7 @@ const MainBox = styled(Main)`
 const MainPage = () => {
 
     return(
-        <MainBox>
+        <MainBox display='flex'>
             <Link to={ROUTES.signUp.url} className='first-button'><Button theme={'secondary'}>{ROUTES.signUp.name}</Button></Link>
             <Link to={ROUTES.login.url}><Button theme={'primary'}>{ROUTES.login.name}</Button></Link>
             <Link to={ROUTES.todos.url} className='last-button'><Button theme={'secondary'}>{ROUTES.todos.name}</Button></Link>

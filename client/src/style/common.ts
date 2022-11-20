@@ -32,11 +32,11 @@ const button = {
     }
 export const headerHeight = '65px'; 
 
-export const Main = styled.main`
+export const Main = styled.main<{display?: string}>`
     width: 100%;
     height: calc(100vh - ${headerHeight} );
     padding: 0 100px;
-    display: flex;
+    display: ${props => props.display ? 'flex' : 'block'};
     align-items: center;
     justify-content: center;
 `;
