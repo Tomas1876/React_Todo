@@ -19,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+  label {
+    display: none;
+  }
+  
   .first-button {
     margin-right: 25px;
   }

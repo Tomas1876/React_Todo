@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { NavLink } from "react-router-dom";
 import { TodoType } from "../../constants/types";
 import { useTodosPagable } from "../../hooks/todos";
@@ -14,7 +14,6 @@ const TodoListItem = ( { todo } : { todo : TodoType } ) => {
 }
 const TodoList = () => {
     const [page, setPage] = useState(0);
-    //const [data, setData] = useState(useTodosPagable(page));
     const data = useTodosPagable(page);
 
     const generatePageButtons = (pages : number) => {

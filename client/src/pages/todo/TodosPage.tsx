@@ -16,16 +16,6 @@ const TodosPage = () => {
         }
     }
   
-    /*
-    // Mutations
-    const mutation = useMutation({
-        mutationFn: createTodo,
-        onSuccess: () => {
-        // Invalidate and refetch
-        queryClient.invalidateQueries({ queryKey: ['todos'] })
-        },
-    })
-    */
     return(
         <Main>
             <h2>할일 목록</h2>

@@ -1,4 +1,3 @@
-import { isConstructorDeclaration } from "typescript";
 import { useTodos } from "../queries/todos"
 
 export const useTodosPagable = (page = 0, count = 5) => {

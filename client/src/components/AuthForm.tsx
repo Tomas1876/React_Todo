@@ -8,8 +8,6 @@ import CustomInput from './common/CustomInput';
 import CustomParagraph from './common/CustomParagraph';
 
 /* FIXME  이 컴포넌트가 너무 많은 일을 하고 있지는 않은지? 리스너의 경우 알맞은 페이지로 분리하는 걸 고려할 것*/
-
-/* FIXME 왜 파라미터를 (authType : string) 이라고 하면 타입에러가 발생하는지 확인해볼 것*/
 const AuthForm = ( {authType} : {authType : string} ) => {
 
     const navigate = useNavigate();
@@ -47,7 +45,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
         setPassword(passwordValue);
     }
 
-    const submitSingUp = (e : React.ChangeEvent<HTMLInputElement>) => {
+    const submitSingUp = (e : React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault();
         axios.post(`${DEFAULT_URL}/${url}`, {
             email, password
@@ -66,7 +64,7 @@ const AuthForm = ( {authType} : {authType : string} ) => {
         });
     }
 
-    const submitLogin = (e : React.ChangeEvent<HTMLInputElement>) => {
+    const submitLogin = (e : React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         if(localStorage.getItem('userToken')) {
@@ -129,26 +127,6 @@ const AuthForm = ( {authType} : {authType : string} ) => {
         setPasswordMessage(password.length >= 8 ? '올바른 길이의 비밀번호입니다' : ERROR_MESSAGE.INVALID_PASSWORD_SHORT);
     }, [password]);
 
-    /* fix: 기본파라미터 지정했는데 왜 옵셔널하게 사용할 수 없는지 확인해볼 것 */
-    const EmailInput = () => CustomInput(
-                                    'email', 
-                                    '이메일 입력',
-                                    'email', 
-                                    '이메일을 입력해주세요',
-                                    0, 
-                                    100, 
-                                    email, 
-                                    validateEmail);
-    const PasswordInput = () => CustomInput(
-                                    'password', 
-                                    '비밀번호 입력',
-                                    'password', 
-                                    '비밀번호를 입력해주세요',
-                                    8,  
-                                    100, 
-                                    password, 
-                                    authType === 'login' ? confirmPassword : validatePassword);
-
     const EmailMessage = () => CustomParagraph(
                                     emailMessage,
                                     isEmailValidated ? 'success' : 'danger');
@@ -156,20 +134,34 @@ const AuthForm = ( {authType} : {authType : string} ) => {
                                     passwordMessage,
                                     password.length >= 8 ? 'success' : 'danger');
     
-    const SubmitButton = () => CustomButton(
-                                    'submit', 
-                                    authRoute.name, 
-                                    isDisabled, 
-                                    isDisabled? 'disabled' : 'primary',
-                                    authType === 'login' ? submitLogin : submitSingUp);
     return (
         <Main>
             <form action={url}>
-                {EmailInput()}
+                <CustomInput type='email'
+                             label='이메일 입력'
+                             placeholder='이메일을 입력해주세요'
+                             minLength={3}
+                             maxLength={100}
+                             name={email}
+                             value={email}
+                             onInput={validateEmail}
+                             />
                 {EmailMessage()}
-                {PasswordInput()}
+                <CustomInput type='password'
+                             label='비밀번호 입력'
+                             placeholder='비밀번호를 입력해주세요'
+                             minLength={8}
+                             maxLength={100}
+                             name={password}
+                             value={password}
+                             onInput={authType === 'login' ? confirmPassword : validatePassword} 
+                             />
                 {PasswordMessage()}
-                {SubmitButton()}
+                <CustomButton type={'submit'}
+                              aria-label={authRoute.name}
+                              disabled={isDisabled}
+                              theme={isDisabled? 'disabled' : 'primary'}
+                              onClick={authType === 'login' ? submitLogin : submitSingUp} />
             </form>
         </Main>
     );

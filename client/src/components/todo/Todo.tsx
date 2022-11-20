@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTodo } from '../../queries/todos';
 import { TodoType } from "../../constants/types";
+import CustomButton from '../common/CustomButton';
 
 const Todo = () => {
 
