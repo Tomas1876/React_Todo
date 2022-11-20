@@ -19,8 +19,8 @@ const TodosPage = () => {
     }
   
     return(
-        <Main>
-            <section className='todo-page-header'>
+        <Main className="todo-main">
+            <section className="todo-page-header">
                 <h2>할일 목록</h2>
                 <CustomButton aria-label='새 할일'
                               width='70px'

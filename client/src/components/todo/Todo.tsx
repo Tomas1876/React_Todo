@@ -64,6 +64,9 @@ const TodoItem = ({todo} : {todo: TodoType}) => {
         }
     }, [isEditing, canUpdate, todoContents, todo])
 
+    useEffect(()=>{
+        setTodoContents(todo);
+    },[todo])
 
     return (
             <>
@@ -135,7 +138,7 @@ const Todo = () => {
  
     return(
         <>
-            {data ? <TodoItem todo={selectedTodo} /> : <p>등록된 할 일이 없습니다</p>}
+            {data ? <TodoItem todo={selectedTodo} /> : ''}
         </>
     );
 }

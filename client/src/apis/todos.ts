@@ -36,11 +36,12 @@ export const getTodo = async (id: string) => {
     }
 }
 
-export const createTodo = async (params : Pick<TodoType, 'title' | 'content'>) => {
+export const createTodo = async (data : Pick<TodoType, 'title' | 'content'>) => {
 
     try {
-        const { data } = await todoApi.post('', params);
-        return data;
+        const result = await todoApi.post('', data);
+        
+        return result.data;
     } catch(error) {
         if (error instanceof AxiosError) {
             console.log(new Error(error.response?.statusText));

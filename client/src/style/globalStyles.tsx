@@ -39,6 +39,9 @@ const GlobalStyle = createGlobalStyle`
   .last-button {
     margin-left: 25px;
   }
+  .todo-main section {
+    display: felx;
+  }
 `;
 
 export default GlobalStyle;

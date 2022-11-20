@@ -9,12 +9,12 @@ const TodoForm = () => {
 
     const [todoTitle, setTodoTitle] = useState('');
     const [todoContent, setTodoContent] = useState('');
-    const [isDisabled, setDisabled] = useState(false);
+    const [canCreate, setCanCreate] = useState(false);
 
     const navigate = useNavigate();
     
     useEffect(()=>{
-        setDisabled(todoTitle !== '' && todoContent !== '')
+        setCanCreate(todoTitle !== '' && todoContent !== '')
     }, [todoTitle, todoContent]);
 
     const onClickCreateTodoButton = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -25,7 +25,9 @@ const TodoForm = () => {
     const addTodomutation = useMutation({
         mutationFn: createTodo,
         onSuccess: () => {
-            navigate('/todos');        
+            alert('새 할일을 등록했습니다');
+            setTodoTitle('');
+            setTodoContent('');        
         },
     });
 
@@ -49,8 +51,8 @@ const TodoForm = () => {
             
             <CustomButton type='submit'
                           aria-label='등록'
-                          disabled={isDisabled}
-                          theme={isDisabled ? 'disabled' : 'primary'}
+                          disabled={!canCreate}
+                          theme={!canCreate ? 'disabled' : 'primary'}
                           onClick={onClickCreateTodoButton} />
         </form>
     );
