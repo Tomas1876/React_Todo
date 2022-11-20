@@ -29,11 +29,12 @@ const button = {
             border: `2px solid ${color.secondary}`
         }
 
-    } 
+    }
+export const headerHeight = '65px'; 
 
 export const Main = styled.main`
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - ${headerHeight} );
     padding: 0 100px;
     display: flex;
     align-items: center;

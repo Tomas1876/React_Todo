@@ -4,14 +4,20 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   body {
+    background: rgba(0,0,0,0.04);
     font-family: "Helvetica", "Arial", sans-serif;
     line-height: 1.5;
   }
   form {
     text-align: center;
+  }
+  ul {
+    list-style: none;
   }
   input, button {
     display: block;

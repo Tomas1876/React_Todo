@@ -1,15 +1,15 @@
 export const DEFAULT_URL = 'http://localhost:8080';
 
 export const ROUTES = {
+    main: {
+        value: 'main',
+        url: '/',
+        name: 'Home'
+    },
     login: {
         value: 'Login',
         url: '/auth/login',
         name: '로그인'
-    },
-    logout: {
-        value: 'Logout',
-        url: '/auth/logout',
-        name: '로그아웃'
     },
     signUp: {
         value: 'SignUp',
