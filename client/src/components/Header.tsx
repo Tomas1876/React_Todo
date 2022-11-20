@@ -32,8 +32,8 @@ const HeaderMenuItem = styled.button`
 const Header = () => {
 
     const { main, login, signUp, todos } = ROUTES;
+    /* FIXME hooks로 토큰 유효 여부 검사부분 뺄 수 있을 것 같은데 그 경우 리렌더링이 안됨...*/
     const [isCertified, setCerified] = useState(localStorage.getItem('userToken') !== (undefined || null));
-
 
     /* FIXME 매 페이지 컴포넌트에 헤더를 삽입하는 것이 아닌, 공통부분에 헤더 한 번만 넣으면서
     동시에 헤더에서 route 관련 컴포넌트들 사용할 수 있는 방법 찾아서 a 태그 수정하기*/

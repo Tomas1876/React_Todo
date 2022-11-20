@@ -6,6 +6,8 @@ import { Main } from '../style/common';
 import CustomButton from './common/CustomButton';
 import CustomInput from './common/CustomInput';
 import CustomParagraph from './common/CustomParagraph';
+import { login, signUp } from '../apis/auth';
+import { useGoHome } from '../hooks/routes';
 
 /* FIXME  이 컴포넌트가 너무 많은 일을 하고 있지는 않은지? 리스너의 경우 알맞은 페이지로 분리하는 걸 고려할 것*/
 const AuthForm = ( {authType} : {authType : string} ) => {
@@ -45,73 +47,23 @@ const AuthForm = ( {authType} : {authType : string} ) => {
         setPassword(passwordValue);
     }
 
-    const submitSingUp = (e : React.MouseEvent<HTMLInputElement>) => {
+    const submitSingUp = async(e : React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault();
-        axios.post(`${DEFAULT_URL}/${url}`, {
-            email, password
-        }).then((response)=>{
-            if(response.status === 200) {
-                if(window.confirm('회원가입에 성공했습니다.')){                    
-                    navigate('/auth/login');
-                }
-            }
-        }).catch((reject)=>{
-            if(reject.response.status === 409) {
-                window.confirm('중복된 이메일입니다.') // https://mangoday.tistory.com/137
-            } else {
-                window.confirm('회원가입에 실패했습니다.')
-            }
-        });
+        if(await signUp(email, password)) {
+            navigate('/');
+        }
     }
 
-    const submitLogin = (e : React.MouseEvent<HTMLInputElement>) => {
+    const submitLogin = async (e : React.MouseEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         if(localStorage.getItem('userToken')) {
             if(window.confirm('이미 로그인 되어 있습니다')) {
                 navigate('/');
             }
-            return;
+        } else if(await login(email, password)) {
+            navigate('/');
         }
-        /*
-        sendData(url,
-                {email, password},
-                (response)=>{
-                    console.log(response)
-                    if(response.status === 200){
-                        if(window.confirm('로그인에 성공했습니다.')) {
-                            localStorage.setItem('userToken', `Barear ${response.data.token}`);                    
-                            navigate('/');
-                        }
-                    }
-                },
-                (reject)=>{
-                    console.log(reject);
-                    if(reject.response.status === 400) {
-                        window.confirm('로그인 정보가 올바르지 않습니다.')
-                    } else {
-                        window.confirm('로그인에 실패했습니다.')
-                    }
-                });
-        */
-
-        axios.post(`${DEFAULT_URL}/${url}`, {
-            email, password
-        }).then((response)=>{
-            if(response.status === 200){
-                if(window.confirm('로그인에 성공했습니다.')) {
-                    localStorage.setItem('userToken', `Barear ${response.data.token}`);                    
-                    navigate('/');
-                }
-            }
-        }).catch((reject)=>{
-            if(reject.response.status === 400) {
-                window.confirm('로그인 정보가 올바르지 않습니다.')
-            } else {
-                window.confirm('로그인에 실패했습니다.')
-            }
-        });
-
     }
 
     /* FIXME 이렇게 useEffect 여러 개 써도 되나? */

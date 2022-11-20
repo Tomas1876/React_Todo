@@ -1,91 +1,12 @@
 {
-  "todos": [
+  "users": [
     {
-      "id": "Ca3uXWxyHegIXuGwccSYX",
-      "createdAt": "2022-11-19T02:04:12.915Z",
-      "updatedAt": "2022-11-20T04:16:21.435Z"
-    },
-    {
-      "id": "5Tv0I2Y-5Ka4dsuGf1dO6",
-      "createdAt": "2022-11-19T02:04:57.586Z",
-      "updatedAt": "2022-11-20T03:06:32.373Z"
-    },
-    {
-      "title": "새로고친 ㅁㄴㅇㄹㅁㄴㅇㄹ",
-      "content": "11111",
-      "id": "9Usj-C33drMiEspWjrlsR",
-      "createdAt": "2022-11-19T03:42:53.312Z",
-      "updatedAt": "2022-11-20T04:27:04.515Z"
-    },
-    {
-      "title": "ㅁㄴㅇㄹ",
-      "content": "ㅁㄴㅇㄹ",
-      "id": "Mso5GQBr163JFsuC72KvY",
-      "createdAt": "2022-11-19T03:46:46.156Z",
-      "updatedAt": "2022-11-19T03:46:46.156Z"
-    },
-    {
-      "title": "1111",
-      "content": "1111",
-      "id": "ziWkRCtZaXwFPOpCDiCUK",
-      "createdAt": "2022-11-19T03:47:26.704Z",
-      "updatedAt": "2022-11-19T03:47:26.704Z"
-    },
-    {
-      "title": "222",
-      "content": "2222",
-      "id": "cx1K9J67NNNAt-D-qfwoH",
-      "createdAt": "2022-11-19T03:50:22.391Z",
-      "updatedAt": "2022-11-19T03:50:22.391Z"
-    },
-    {
-      "title": "3333",
-      "content": "33333",
-      "id": "g_OuFhpYc2BUKLHU3MOVU",
-      "createdAt": "2022-11-19T03:51:24.735Z",
-      "updatedAt": "2022-11-19T03:51:24.735Z"
-    },
-    {
-      "title": "4444",
-      "content": "44444",
-      "id": "n2EfKITuVab4Fk2Gw4dWV",
-      "createdAt": "2022-11-19T03:52:38.582Z",
-      "updatedAt": "2022-11-19T03:52:38.582Z"
-    },
-    {
-      "title": "555",
-      "content": "55555",
-      "id": "l64C2jGnr6DAEZv6Idldj",
-      "createdAt": "2022-11-19T03:53:35.857Z",
-      "updatedAt": "2022-11-19T03:53:35.857Z"
-    },
-    {
-      "title": "66",
-      "content": "6666",
-      "id": "THe4gQbzcmNsTFqfUDBWV",
-      "createdAt": "2022-11-19T03:56:00.580Z",
-      "updatedAt": "2022-11-19T03:56:00.580Z"
-    },
-    {
-      "title": "sdadfa",
-      "content": "121212",
-      "id": "G37wjseudXFEKHnb03Rd3",
-      "createdAt": "2022-11-19T05:04:02.675Z",
-      "updatedAt": "2022-11-19T05:04:02.675Z"
-    },
-    {
-      "title": "가나다",
-      "content": "1111",
-      "id": "H_X7bxeQxC200x9IZRB67",
-      "createdAt": "2022-11-19T05:34:03.958Z",
-      "updatedAt": "2022-11-19T05:34:03.958Z"
-    },
-    {
-      "title": "121212",
-      "content": "121212",
-      "id": "-x6GVEdnVu0OWCsB1tiLK",
-      "createdAt": "2022-11-19T10:42:58.731Z",
-      "updatedAt": "2022-11-19T10:42:58.731Z"
+      "email": "abc@naver.com",
+      "password": "12345678",
+      "id": "jlzOKbqwOQQ4JNyJoIxeb",
+      "createdAt": "2022-11-20T06:47:58.113Z",
+      "updatedAt": "2022-11-20T06:47:58.113Z"
     }
-  ]
+  ],
+  "todos": []
 }
