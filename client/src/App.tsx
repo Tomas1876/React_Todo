@@ -1,24 +1,20 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import LoginPage from './pages/auth/LoginPage';
-import SignUpPage from './pages/auth/SignUpPage';
-import TodosPage from './pages/todo/TodosPage';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import { RouterProvider } from 'react-router';
+import Header from './components/Header';
+import router from './routes/router';
 import GlobalStyle from './style/globalStyles';
 
 function App() {
-  return (
-    <div className="App">
-      <GlobalStyle />
-      <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/auth/login" element={<LoginPage />} />
-        <Route path="/auth/signup" element={<SignUpPage />} />
-        <Route path="/todos" element={<TodosPage />} />
-      </Routes>
-      </BrowserRouter>
-    </div>
-  );
+    const queryClient = new QueryClient();
+    return (
+        <div className="App">
+            <Header />
+            <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+            <GlobalStyle />
+            </QueryClientProvider>
+        </div>
+    );
 }
-
 export default App;

@@ -1,19 +1,11 @@
+import React from "react";
 import { Button } from "../../style/common";
+import { CustomButtonProps } from "../../constants/types";
 
-const CustomButton = (
-        type : any = 'button',
-        label : string = '버튼',
-        disabled : boolean,
-        theme : string = 'primary',
-        onClick : React.FormEventHandler = (e)=> { console.log(e) }
-    ) => {
+const CustomButton = ( props : CustomButtonProps) => {
         return (
-            <Button type={type}
-                    aria-label={label}
-                    disabled={disabled}
-                    theme={theme}
-                    onClick={onClick}>
-                {label}
+            <Button {...props}>
+                {props["aria-label"]}
             </Button>)
 }
 export default CustomButton;

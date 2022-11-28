@@ -1,3 +1,4 @@
+import { CustomSize } from './../constants/types';
 import styled from 'styled-components';
 
 /* 공통 스타일 */
@@ -28,30 +29,31 @@ const button = {
             border: `2px solid ${color.secondary}`
         }
 
-    } 
+    }
+export const headerHeight = '65px'; 
 
-export const Main = styled.main`
+export const Main = styled.main<{display?: string}>`
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - ${headerHeight} );
     padding: 0 100px;
-    display: flex;
+    display: ${props => props.display ? 'flex' : 'block'};
     align-items: center;
     justify-content: center;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<CustomSize>`
     width: 300px;
     height: 120px;
     border-radius: 5px;
     outline: none;
 `;
 
-export const Button = styled.button`
-    width: 300px;
-    height: 120px;
+export const Button = styled.button<CustomSize>`
+    width: ${props => props.width ? props.width : '300px'};
+    height: ${props => props.height ? props.height : '120px'};
     border: none;
     border-radius: 5px;
-    font-size: 32px;    
+    font-size: ${props => props['font-size'] ? props['font-size'] : '32px'}; 
     ${props => props.theme === 'primary' ? button.primary : (props.theme === 'secondary'? button.secondary : button.disabled)}
     :hover {
         filter: brightness(0.90)
