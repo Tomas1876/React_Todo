@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { User } from '../constants/types';
 import { DEFAULT_URL } from './../constants/global';
 
-export const login = async(email: string, password: string) => {
+export const login = async(user : User) => {
         const loginResult = await axios.post(`${DEFAULT_URL}/users/login`, {
-            email, password
+            user
         }).then((response)=>{
             if(response.status === 200){
                 if(window.confirm('로그인에 성공했습니다.')) {
@@ -27,9 +28,9 @@ export const login = async(email: string, password: string) => {
         return loginResult;
 }
 
-export const signUp = async(email: string, password: string) => {
+export const signUp = async(user : User) => {
     const signUpResult = await axios.post(`${DEFAULT_URL}/users/create`, {
-        email, password
+        user
     }).then((response)=>{
             if(response.status === 200) {
                 if(window.confirm('회원가입에 성공했습니다.')){                    
@@ -38,7 +39,7 @@ export const signUp = async(email: string, password: string) => {
             }
         }).catch((reject)=>{
             if(reject.response.status === 409) {
-                window.confirm('중복된 이메일입니다.') // https://mangoday.tistory.com/137
+                window.confirm('중복된 이메일입니다.')
             } else {
                 window.confirm('회원가입에 실패했습니다.')
             }

@@ -25,7 +25,7 @@ const TodoItem = ({todo} : {todo: TodoType}) => {
             if(todoContents.title.trim() === '') {
                 message = '할일 제목을 1자 이상 입력해주세요.';
             } else if(todoContents.content.trim() === '') {
-                message = '할일 제목을 1자 이상 입력해주세요.';
+                message = '할일 내용을 1자 이상 입력해주세요.';
             } else {
                 message = '할일을 수정할 수 없습니다. 다시 시도해주세요.'
             }

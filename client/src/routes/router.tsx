@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
 import Todo from "../components/todo/Todo";
 import { ROUTES } from "../constants/global";
 import LoginPage from "../pages/auth/LoginPage";
@@ -6,9 +7,12 @@ import SignUpPage from "../pages/auth/SignUpPage";
 import MainPage from "../pages/MainPage";
 import TodosPage from "../pages/todo/TodosPage";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter([{
+  element: <App />,
+  path: '/',
+  children: [
   {
-    path: "/",
+    path: ROUTES.main.url,
     element: <MainPage />
   },
   {
@@ -29,6 +33,7 @@ const router = createBrowserRouter([
       },
     ]
   }
-]);
+]
+}]);
 
 export default router;

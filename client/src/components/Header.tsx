@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { ROUTES } from "../constants/global";
-import { useCertify } from '../hooks/auth';
 import { headerHeight } from "../style/common";
 
 const CustomHeader = styled.header`
@@ -53,19 +53,19 @@ const Header = () => {
                     </li> :
                     <>
                         <li>
-                            <a href={signUp.url}><HeaderMenuItem value={signUp.value}>{signUp.name}</HeaderMenuItem></a>
+                            <Link to={signUp.url}><HeaderMenuItem value={signUp.value}>{signUp.title}</HeaderMenuItem></Link>
                         </li>
                         <li>
-                            <a href={login.url}><HeaderMenuItem value={login.value}>{login.name}</HeaderMenuItem></a>
+                            <Link to={login.url}><HeaderMenuItem value={login.value}>{login.title}</HeaderMenuItem></Link>
                         </li>
                     </>
                 }
                 {isCertified ? 
                     <li>
-                        <a href={todos.url}><HeaderMenuItem value={todos.value}>{todos.name}</HeaderMenuItem></a>
+                        <Link to={todos.url}><HeaderMenuItem value={todos.value}>{todos.title}</HeaderMenuItem></Link>
                     </li> : ''}
                 <li>
-                    <a href={main.url}><HeaderMenuItem value={main.value}>{main.name}</HeaderMenuItem></a>
+                    <Link to={main.url}><HeaderMenuItem value={main.value}>{main.title}</HeaderMenuItem></Link>
                 </li>
             </HeaderMenu>
         </CustomHeader>

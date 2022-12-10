@@ -1,25 +1,24 @@
 export const DEFAULT_URL = 'http://localhost:8080';
-
 export const ROUTES = {
     main: {
         value: 'main',
         url: '/',
-        name: 'Home'
+        title: 'Home'
     },
     login: {
         value: 'Login',
-        url: '/auth/login',
-        name: '로그인'
+        url: '/auth/login/',
+        title: '로그인'
     },
     signUp: {
         value: 'SignUp',
-        url: '/auth/signup',
-        name: '회원가입'
+        url: '/auth/signup/',
+        title: '회원가입'
     },
     todos: {
         value: 'Todos',
-        url: '/todos',
-        name: '할일'
+        url: '/todos/',
+        title: '할일'
     }
 }
 

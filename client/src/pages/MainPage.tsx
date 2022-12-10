@@ -11,9 +11,9 @@ const MainPage = () => {
 
     return(
         <MainBox display='flex'>
-            <Link to={ROUTES.signUp.url} className='first-button'><Button theme={'secondary'}>{ROUTES.signUp.name}</Button></Link>
-            <Link to={ROUTES.login.url}><Button theme={'primary'}>{ROUTES.login.name}</Button></Link>
-            <Link to={ROUTES.todos.url} className='last-button'><Button theme={'secondary'}>{ROUTES.todos.name}</Button></Link>
+            <Link to={ROUTES.signUp.url} className='first-button'><Button theme={'secondary'}>{ROUTES.signUp.title}</Button></Link>
+            <Link to={ROUTES.login.url}><Button theme={'primary'}>{ROUTES.login.title}</Button></Link>
+            <Link to={ROUTES.todos.url} className='last-button'><Button theme={'secondary'}>{ROUTES.todos.title}</Button></Link>
         </MainBox>        
     )
 }
